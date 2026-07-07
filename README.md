@@ -1,4 +1,4 @@
-# Wake On LAN Web Portal 🚀
+﻿# Wake On LAN Web Portal 🚀
 
 ¡Bienvenido al **Wake On LAN Web Portal**! Esta aplicación web moderna e intuitiva permite a administradores y usuarios gestionar, monitorear y encender equipos de forma remota a través de la red local enviando paquetes mágicos (Magic Packets) de Wake-on-LAN (WOL).
 
@@ -18,39 +18,39 @@
 *(Las siguientes imágenes ilustran el funcionamiento del sistema en diferentes vistas y funciones).*
 
 ### 1. Inicio de Sesión de Usuario Estándar
-![Pantalla de Login Usuario](img/1.png)
+![Pantalla de Login Usuario](img/1.PNG)
 *Pantalla para ingresar el PIN de acceso del usuario estándar.*
 
 ### 2. Portal de Usuario
-![Equipos Asignados](img/10.png)
+![Equipos Asignados](img/10.PNG)
 *Al ingresar el PIN, el usuario solo verá y podrá encender los equipos que le han sido asignados.*
 
 ### 3. Login del Administrador
-![Login de Administrador](img/2.png)
+![Login de Administrador](img/2.PNG)
 *Acceso al panel de administración para gestionar usuarios, equipos y configuraciones. (Contraseña por defecto: 12345678).*
 
 ### 4. Gestión de Usuarios
-![Administración de Usuarios](img/4.png)
+![Administración de Usuarios](img/4.PNG)
 *Panel para crear, editar, eliminar y administrar los usuarios del sistema.*
 
 ### 5. Creación de Usuario
-![Modal de Usuario](img/3.png)
+![Modal de Usuario](img/3.PNG)
 *Modal para registrar un nuevo usuario definiendo su nombre y PIN de acceso.*
 
 ### 6. Asignación de Equipos a Usuarios
-![Asignar Equipos](img/8.png)
+![Asignar Equipos](img/8.PNG)
 *Opciones para vincular los equipos de la red a un usuario específico (se realiza después de crear al usuario).*
 
 ### 7. Configuración de Equipos
-![Panel de Equipos](img/7.png)
+![Panel de Equipos](img/7.PNG)
 *Panel completo para anexar equipos, editarlos, eliminarlos e incluso enviar el comando de encendido manual.*
 
 ### 8. Escaneo Automático de Red
-![Escáner de Red](img/5.png)
+![Escáner de Red](img/5.PNG)
 *Herramienta integrada para escanear y descubrir dispositivos en la red local mediante peticiones ARP/Ping.*
 
 ### 9. Resultados del Escaneo
-![Listado de Equipos Escaneados](img/6.png)
+![Listado de Equipos Escaneados](img/6.PNG)
 *Listado de los equipos descubiertos tras ejecutar el escáner de red, listos para ser agregados.*
 
 ## 🚀 Guía de Instalación y Uso
