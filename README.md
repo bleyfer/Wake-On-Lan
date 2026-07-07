@@ -17,41 +17,41 @@
 
 *(Las siguientes imágenes ilustran el funcionamiento del sistema en diferentes vistas y funciones).*
 
-### 1. Inicio de Sesión y Autenticación
-![Pantalla de Login](img/1.PNG)
-*Pantalla de acceso principal. Permite iniciar sesión como Administrador mediante contraseña maestra, o como Usuario Estándar usando un PIN de 4 dígitos.*
+### 1. Inicio de Sesión de Usuario Estándar
+![Pantalla de Login Usuario](img/1.png)
+*Pantalla para ingresar el PIN de acceso del usuario estándar.*
 
-### 2. Panel de Control del Administrador
-![Dashboard de Administrador](img/2.PNG)
-*Vista central del administrador con monitoreo en tiempo real (ping en milisegundos), edición de equipos y vista del estado online/offline de cada dispositivo registrado.*
+### 2. Portal de Usuario
+![Equipos Asignados](img/10.png)
+*Al ingresar el PIN, el usuario solo verá y podrá encender los equipos que le han sido asignados.*
 
-### 3. Escáner Automático de Red
-![Herramienta de Escaneo](img/3.PNG)
-*Funcionalidad para descubrir automáticamente equipos conectados a la red local mediante peticiones Ping/ARP, facilitando su adición al portal.*
+### 3. Login del Administrador
+![Login de Administrador](img/2.png)
+*Acceso al panel de administración para gestionar usuarios, equipos y configuraciones. (Contraseña por defecto: 12345678).*
 
-### 4. Gestión de Usuarios y Permisos
-![Asignación de Usuarios](img/4.PNG)
-*Control detallado donde el administrador puede asignar equipos específicos a diferentes usuarios, limitando su acceso solo a lo que necesitan encender.*
+### 4. Gestión de Usuarios
+![Administración de Usuarios](img/4.png)
+*Panel para crear, editar, eliminar y administrar los usuarios del sistema.*
 
-### 5. Portal Simplificado para Usuarios
-![Vista de Usuario](img/5.PNG)
-*Interfaz limpia y directa para los usuarios. Muestra únicamente sus dispositivos asignados con la opción directa de "Encender equipo".*
+### 5. Creación de Usuario
+![Modal de Usuario](img/3.png)
+*Modal para registrar un nuevo usuario definiendo su nombre y PIN de acceso.*
 
-### 6. Sistema de Validaciones Dinámicas
-![Validaciones de Formularios](img/6.PNG)
-*Todos los formularios incluyen retroalimentación visual inmediata. Los errores y requerimientos se muestran en el idioma preferido del usuario.*
+### 6. Asignación de Equipos a Usuarios
+![Asignar Equipos](img/8.png)
+*Opciones para vincular los equipos de la red a un usuario específico (se realiza después de crear al usuario).*
 
-### 7. Ejecución de Wake-On-LAN
-![Notificación WOL](img/7.PNG)
-*Notificaciones emergentes que confirman al instante el envío exitoso del Magic Packet hacia el dispositivo objetivo.*
+### 7. Configuración de Equipos
+![Panel de Equipos](img/7.png)
+*Panel completo para anexar equipos, editarlos, eliminarlos e incluso enviar el comando de encendido manual.*
 
-### 8. Administración de Configuraciones de Red
-![Configuración de Subredes](img/8.PNG)
-*Opciones avanzadas para que el administrador defina subredes específicas y rangos de IP para la función de escaneo automático.*
+### 8. Escaneo Automático de Red
+![Escáner de Red](img/5.png)
+*Herramienta integrada para escanear y descubrir dispositivos en la red local mediante peticiones ARP/Ping.*
 
-### 9. Integración Multi-idioma y Preferencias
-![Cambio de Idioma](img/9.PNG)
-*Selector de idioma y gestión del perfil. La aplicación guarda las preferencias para garantizar una experiencia 100% localizada.*
+### 9. Resultados del Escaneo
+![Listado de Equipos Escaneados](img/6.png)
+*Listado de los equipos descubiertos tras ejecutar el escáner de red, listos para ser agregados.*
 
 ## 🚀 Guía de Instalación y Uso
 
@@ -68,10 +68,15 @@
 
 El sistema cuenta con soporte nativo y optimizado para ejecutarse como un servicio (Daemon) en servidores Linux y dispositivos IoT como Raspberry Pi (x64, ARM y ARM64), consultando directamente la tabla ARP del kernel (`/proc/net/arp`) para una perfecta compatibilidad.
 
-1. Descarga el archivo comprimido correspondiente a tu arquitectura (ej. `linux-arm64.zip` para Raspberry Pi OS 64-bits o `linux-x64.zip` para Ubuntu/Debian) desde la sección de *Releases*.
-2. Descomprime los archivos en tu servidor (ej. en `/opt/wakeonlan/`). Al ser *Self-Contained*, **no necesitas instalar .NET** en el servidor.
-3. Configura un archivo de servicio en `systemd` (`/etc/systemd/system/wakeonlan.service`) para que el sistema inicie de forma persistente.
-4. Ejecuta el archivo binario `wakeOnLan` y accede a través de tu navegador.
+La instalación se ha automatizado mediante un script profesional que detecta tu arquitectura, descarga la última versión desde GitHub y configura automáticamente el servicio `systemd`.
+
+Ejecuta el siguiente comando en la terminal de tu servidor Linux:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/bleyfer/Wake-On-Lan/main/install.sh | sudo bash
+```
+
+*Nota: Al finalizar el script, la aplicación estará corriendo en segundo plano y podrás acceder a través de tu navegador.*
 
 ### Primer Acceso (Administrador)
 Al iniciar la aplicación por primera vez, el sistema creará automáticamente su base de datos local con credenciales predeterminadas. La **contraseña de administrador por defecto es `12345678`** (no se requiere usuario). ¡Asegúrate de iniciar sesión y cambiarla inmediatamente desde la configuración de tu perfil para mantener tu red segura!
