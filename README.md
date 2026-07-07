@@ -22,7 +22,7 @@
 *Pantalla para ingresar el PIN de acceso del usuario estándar.*
 
 ### 2. Portal de Usuario
-![Equipos Asignados](img/10.PNG)
+![Equipos Asignados](img/9.PNG)
 *Al ingresar el PIN, el usuario solo verá y podrá encender los equipos que le han sido asignados.*
 
 ### 3. Login del Administrador
