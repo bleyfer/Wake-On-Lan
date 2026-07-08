@@ -51,6 +51,17 @@ if [ -z "$DOWNLOAD_URL" ]; then
   exit 1
 fi
 
+# 4.5 Verificar si ya está instalada esta versión
+INSTALL_DIR="/opt/wakeonlan"
+if [ -f "$INSTALL_DIR/version.txt" ]; then
+  CURRENT_VERSION=$(cat "$INSTALL_DIR/version.txt")
+  if [ "$CURRENT_VERSION" = "$TAG_NAME" ]; then
+    echo ""
+    echo "✅ Ya tienes instalada la última versión ($CURRENT_VERSION). No es necesario actualizar."
+    exit 0
+  fi
+fi
+
 # 5. Descargar y descomprimir
 INSTALL_DIR="/opt/wakeonlan"
 TMP_ZIP="/tmp/wakeonlan_$TAG_NAME.zip"
@@ -59,6 +70,12 @@ curl -L --progress-bar "$DOWNLOAD_URL" -o "$TMP_ZIP"
 
 echo ""
 echo "📂 Preparando instalación en $INSTALL_DIR..."
+
+# Detener el servicio si existe para poder sobrescribir los archivos
+if systemctl is-active --quiet wakeonlan.service; then
+  echo "🛑 Deteniendo servicio actual..."
+  systemctl stop wakeonlan.service
+fi
 
 # Hacer backup de la base de datos si es una actualización
 DB_BACKUP="/tmp/wakeonlan_db_backup.db"
@@ -81,6 +98,9 @@ if [ -f "$DB_BACKUP" ]; then
   cp "$DB_BACKUP" "$INSTALL_DIR/App_Data/wakeonlan.db"
   rm -f "$DB_BACKUP"
 fi
+
+# Escribir archivo de versión para futuras actualizaciones
+echo "$TAG_NAME" > "$INSTALL_DIR/version.txt"
 
 # Dar permisos de ejecución
 chmod +x "$INSTALL_DIR/wakeOnLan"
