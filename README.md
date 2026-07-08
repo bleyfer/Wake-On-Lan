@@ -1,4 +1,4 @@
-﻿# Wake On LAN Web Portal 🚀
+# Wake On LAN Web Portal 🚀
 
 ¡Bienvenido al **Wake On LAN Web Portal**! Esta aplicación web moderna e intuitiva permite a administradores y usuarios gestionar, monitorear y encender equipos de forma remota a través de la red local enviando paquetes mágicos (Magic Packets) de Wake-on-LAN (WOL).
 
@@ -64,17 +64,20 @@
 2. Ejecuta el instalador y sigue los pasos del asistente en pantalla para instalar el portal en tu servidor o equipo Windows. El instalador cuenta con multi-idioma nativo.
 3. Una vez instalado, el servicio web iniciará automáticamente en segundo plano. Puedes acceder a la aplicación navegando a `http://localhost:5100` (o el puerto configurado).
 
-### Instalación en Linux / Raspberry Pi (Multiplataforma)
+### Instalación y Actualización en Linux / Raspberry Pi
 
 El sistema cuenta con soporte nativo y optimizado para ejecutarse como un servicio (Daemon) en servidores Linux y dispositivos IoT como Raspberry Pi (x64, ARM y ARM64), consultando directamente la tabla ARP del kernel (`/proc/net/arp`) para una perfecta compatibilidad.
 
 La instalación se ha automatizado mediante un script profesional que detecta tu arquitectura, descarga la última versión desde GitHub y configura automáticamente el servicio `systemd`.
 
-Ejecuta el siguiente comando en la terminal de tu servidor Linux:
+Para **Instalar** o **Actualizar** el sistema, ejecuta el siguiente comando en la terminal de tu servidor Linux:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/bleyfer/Wake-On-Lan/main/install.sh | sudo bash
 ```
+
+> [!TIP]
+> **Actualización Segura:** Este mismo comando actúa como un actualizador inteligente. Si ya tienes el sistema instalado y ejecutas este comando, el script detectará si hay una nueva versión, creará un respaldo de tu base de datos automáticamente, actualizará los archivos y restaurará tu información sin que pierdas ningún dato.
 
 *Nota: Al finalizar el script, la aplicación estará corriendo en segundo plano y podrás acceder a través de tu navegador.*
 
