@@ -1,6 +1,6 @@
-# Wake On LAN Web Portal 🚀
+# Wake On LAN Web 🚀
 
-¡Bienvenido al **Wake On LAN Web Portal**! Esta aplicación web moderna e intuitiva permite a administradores y usuarios gestionar, monitorear y encender equipos de forma remota a través de la red local enviando paquetes mágicos (Magic Packets) de Wake-on-LAN (WOL).
+¡Bienvenido al **Wake On LAN Web**! Esta aplicación web moderna e intuitiva permite a administradores y usuarios gestionar, monitorear y encender equipos de forma remota a través de la red local enviando paquetes mágicos (Magic Packets) de Wake-on-LAN (WOL).
 
 ## ✨ Características Principales
 

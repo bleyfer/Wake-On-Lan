@@ -3,7 +3,7 @@
 set -e
 
 echo "=================================================="
-echo "  Instalador de Wake On LAN Web Portal para Linux"
+echo "  Instalador de Wake On LAN Web para Linux"
 echo "=================================================="
 
 # 1. Comprobar privilegios de root
@@ -110,7 +110,7 @@ echo "⚙️ Configurando el servicio de sistema (Systemd)..."
 
 cat <<EOF > /etc/systemd/system/wakeonlan.service
 [Unit]
-Description=Wake On LAN Web Portal
+Description=Wake On LAN Web
 After=network.target
 
 [Service]
