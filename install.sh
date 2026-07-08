@@ -27,9 +27,10 @@ fi
 
 # 3. Dependencias necesarias
 echo "📦 Verificando dependencias (curl, unzip, jq)..."
-apt-get update -qq && apt-get install -y -qq curl unzip jq libicu-dev
+apt-get update -y && apt-get install -y curl unzip jq libicu-dev
 
 # 4. Obtener la última versión de GitHub
+echo ""
 echo "🔍 Buscando la última versión en GitHub..."
 REPO="bleyfer/Wake-On-Lan"
 API_URL="https://api.github.com/repos/$REPO/releases/latest"
@@ -54,13 +55,32 @@ fi
 INSTALL_DIR="/opt/wakeonlan"
 TMP_ZIP="/tmp/wakeonlan_$TAG_NAME.zip"
 
-curl -sL "$DOWNLOAD_URL" -o "$TMP_ZIP"
+curl -L --progress-bar "$DOWNLOAD_URL" -o "$TMP_ZIP"
 
-echo "📂 Instalando en $INSTALL_DIR..."
+echo ""
+echo "📂 Preparando instalación en $INSTALL_DIR..."
+
+# Hacer backup de la base de datos si es una actualización
+DB_BACKUP="/tmp/wakeonlan_db_backup.db"
+if [ -f "$INSTALL_DIR/App_Data/wakeonlan.db" ]; then
+  echo "💾 Respaldando base de datos existente..."
+  cp "$INSTALL_DIR/App_Data/wakeonlan.db" "$DB_BACKUP"
+fi
+
+# Limpiar directorio de instalación
 rm -rf "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR"
-unzip -q "$TMP_ZIP" -d "$INSTALL_DIR"
+mkdir -p "$INSTALL_DIR/App_Data"
+
+echo "📦 Extrayendo archivos..."
+unzip -o "$TMP_ZIP" -d "$INSTALL_DIR" | awk 'BEGIN {ORS=" "} {if(NR%10==0)print "."} END {print "\n✅ Extracción completada."}'
 rm -f "$TMP_ZIP"
+
+# Restaurar backup de la base de datos si existe
+if [ -f "$DB_BACKUP" ]; then
+  echo "♻️ Restaurando base de datos..."
+  cp "$DB_BACKUP" "$INSTALL_DIR/App_Data/wakeonlan.db"
+  rm -f "$DB_BACKUP"
+fi
 
 # Dar permisos de ejecución
 chmod +x "$INSTALL_DIR/wakeOnLan"
@@ -94,7 +114,7 @@ systemctl enable wakeonlan.service
 systemctl restart wakeonlan.service
 
 echo "=================================================="
-echo "✅ ¡Instalación completada con éxito!"
+echo "✅ ¡Instalación / Actualización completada con éxito!"
 echo "🌐 Accede al portal web abriendo en tu navegador:"
 echo "   http://<IP-DE-ESTE-SERVIDOR>:5100"
 echo ""
